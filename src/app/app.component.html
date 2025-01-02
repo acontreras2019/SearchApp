@@ -1,12 +1,52 @@
 <div class="app-container">
   <header class="app-header">
-    <h1>{{ title }}</h1>
+    <mat-toolbar color="primary" class="toolbar">
+      <div class="left-section">
+        <button mat-icon-button (click)="toggleSidebar()">
+          <mat-icon class="white-icon">menu</mat-icon>
+        </button>
+      </div>
+
+      <div class="center-section">
+        <span class="title">{{ title }}</span>
+      </div>
+
+      <div class="right-section">
+        <button mat-icon-button>
+          <mat-icon class="white-icon">login</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon class="white-icon">settings</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
   </header>
 
-  <router-outlet></router-outlet>  <!-- Aquí se cargarán los componentes según la ruta -->
+  
+  <div class="content">
+    <mat-sidenav-container class="sidenav-container">
+      <!-- Barra lateral -->
+      <mat-sidenav
+        #sidenav
+        class="sidebar"
+        mode="side"
+        [opened]="isSidebarOpen"
+        [fixedInViewport]="true"
+        (closedStart)="isSidebarOpen = false"
+      >
+        <h2>Filtros</h2>
+        <div *ngFor="let filter of filtersData" class="filter-section">
+          <h5>{{ filter.type | titlecase }}</h5>
+          <div *ngFor="let option of filter.options">
+            <mat-checkbox [(ngModel)]="option.selected">{{ option.name }}</mat-checkbox>
+          </div>
+        </div>
+      </mat-sidenav>
 
-
-  <!-- Aquí se incluye el HomeComponent -->
-  <!-- <app-home></app-home> -->
-   <!-- Este es el contenedor del componente de búsqueda -->
+      <!-- Contenido principal -->
+      <mat-sidenav-content class="main-content">
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
 </div>

@@ -1,73 +1,103 @@
+
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* General layout */
 .app-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Navbar styles */
+.app-header {
+  flex: 0 0 auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  transition: margin-left 0.3s ease;
+}
+
+.navbar-shift {
+  margin-left: 250px; /* Ajusta el margen cuando la sidebar está abierta */
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  color: white;
+}
+
+/* Navbar sections */
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.center-section {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Sidebar styles */
+.sidenav-container {
+  margin-top: 64px; /* Altura de la navbar */
+  height: calc(100% - 64px);
+}
+
+.sidebar {
+  width: 250px;
+}
+
+.main-content {
+  padding: 16px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Adjust main content when sidebar is open */
+.mat-sidenav-opened + .main-content {
+  margin-left: 250px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navbar-shift {
+    margin-left: 0;
   }
-  
-  .app-header {
-    background-color: #007bff;
-    color: white;
-    padding: 20px;
-    text-align: center;
+
+  .sidenav-container {
+    margin-top: 56px; /* Ajusta altura de la navbar en pantallas pequeñas */
   }
-  
-  .search-container {
-    display: flex;
-    height: 100%;
+
+  .sidebar {
+    width: 200px;
   }
-  
-  .filters-container {
-    width: 250px;
-    background-color: #f8f9fa;
-    padding: 20px;
-    border-right: 1px solid #ddd;
-    transition: transform 0.3s ease-in-out;
+
+  .main-content {
+    padding: 8px;
   }
-  
-  .filters-container.hidden {
-    transform: translateX(-100%);
-  }
-  
-  .search-content {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  .search-bar input {
-    width: 80%;
-    padding: 10px;
-    margin-right: 10px;
-  }
-  
-  .results {
-    margin-top: 20px;
-  }
-  
-  .results ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .results li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .toggle-filters-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
-  
-  .filter-section {
-    margin-bottom: 20px;
-  }
-  
-  .filter-section h5 {
-    margin-bottom: 10px;
-  }
-  
+}
+
+.white-icon {
+  color: white; /* Cambia el color del ícono a blanco */
+  background-color: #3f51b5; /* Fondo azul, igual al color primary */
+  border-radius: 50%; /* Para hacer el fondo circular */
+  padding: 8px; /* Ajusta el padding para que el fondo no quede tan pequeño */
+}
+

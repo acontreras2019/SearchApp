@@ -1,164 +1,21 @@
-/* Contenedor principal que usa flexbox */
-.search-container {
-  display: flex;
-  flex-direction: row;
-  height: 100vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+.sidenav-container {
+  height: 100vh;
 }
-
-/* Contenedor de la barra lateral de filtros */
-.filters-container {
-  width: 250px; /* Ancho fijo de la barra de filtros */
-  background-color: #f8f9fa;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  position: relative;
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.filters-container.hidden {
-  transform: translateX(-100%); /* Oculta la barra de filtros al desplazarla hacia la izquierda */
-}
-
-/* Título y encabezados dentro de los filtros */
-.filter-section h5 {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.filter-section label {
-  margin-bottom: 10px;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-}
-
-.filter-section input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-/* Botón de mostrar/ocultar filtros como un ícono de flecha */
-.toggle-filters-btn {
-  position: absolute;
-  top: 10px;
-  right: -25px; /* Lo coloca al borde de la barra lateral */
-  background-color: transparent;
-  border: none;
-  font-size: 2rem;
-  color: #007bff;
-  cursor: pointer;
-}
-
-.toggle-filters-btn:hover {
-  background-color: #0056b3;
-}
-
-/* Contenedor de búsqueda y resultados */
-.search-content {
-  flex: 1;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Título de búsqueda */
-.search-content h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-/* Barra de búsqueda */
-.search-bar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 20px;
-  gap: 10px;
-}
-
-.search-bar input {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  max-width: 400px;
-}
-
-.search-bar button {
-  padding: 10px 15px;
+.sidebar {
+  width: 250px;
   background-color: #007bff;
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
-
-.search-bar button:hover {
-  background-color: #0056b3;
+.spacer {
+  flex: 1 1 auto;
 }
-
-/* Resultados de búsqueda */
-.results {
-  margin-top: 20px;
+.hamburger-btn {
+  margin-bottom: 20px;
 }
-
-.results h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #333;
+.search-bar {
+  display: flex;
+  gap: 10px;
 }
-
-.results ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-.results li {
-  margin-bottom: 15px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-}
-
-.results a {
-  font-size: 1.1rem;
-  color: #007bff;
-  text-decoration: none;
-}
-
-.results a:hover {
-  text-decoration: underline;
-}
-
-.results p {
-  color: #666;
-  font-size: 0.95rem;
-}
-
-/* Estilo para pantallas pequeñas */
-@media (max-width: 768px) {
-  .search-container {
-    flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
-  }
-
-  .filters-container {
-    width: 100%; /* Barra de filtros ocupa todo el ancho en dispositivos pequeños */
-    transform: translateX(0);
-  }
-
-  .search-content {
-    padding: 10px;
-  }
-
-  .search-bar input {
-    width: 100%;
-  }
-
-  .search-bar button {
-    width: 100%;
-  }
+.main-content {
+  padding: 20px;
 }

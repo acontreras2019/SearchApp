@@ -1,51 +1,21 @@
-<div class="search-container">
-  <!-- Barra lateral de filtros -->
-  <div class="filters-container" [class.hidden]="isFiltersHidden">
-    <button class="toggle-filters-btn" (click)="toggleFilters()">
-      {{ isFiltersHidden ? '>' : '<' }}
-    </button>
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidebar con Angular Material -->
 
-    <!-- Filtros dinámicos desde el JSON -->
-    <div *ngFor="let filter of filtersData" class="filter-section">
-      <h5>{{ filter.type }}</h5>
-      <label *ngFor="let option of filter.options">
-        <input 
-          type="checkbox" 
-          [(ngModel)]="option.selected" 
-          [id]="option.id" /> 
-        {{ option.name }}
-      </label>
+    <div class="main-content">
+      <h2>Buscar Información</h2>
+      <div *ngIf="results.length > 0" class="results">
+        <h3>Resultados:</h3>
+        <ul>
+          <li *ngFor="let result of results">
+            <a [href]="result.link" target="_blank">{{ result.title }}</a>
+            <p>{{ result.description }}</p>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="results.length === 0 && searchExecuted">
+        <p>No se encontraron resultados.</p>
+      </div>
     </div>
-  </div>
+</mat-sidenav-container>
 
-  <!-- Contenedor de búsqueda y resultados -->
-  <div class="search-content">
-    <h2>Buscar Información</h2>
 
-    <!-- Barra de búsqueda -->
-    <div class="search-bar">
-      <input 
-        type="text" 
-        placeholder="Escribe tu búsqueda aquí..." 
-        [(ngModel)]="searchQuery"
-        (keyup.enter)="search()" />
-      <button (click)="search()">Buscar</button>
-    </div>
-
-    <!-- Resultados -->
-    <div *ngIf="results.length > 0" class="results">
-      <h3>Resultados:</h3>
-      <ul>
-        <li *ngFor="let result of results">
-          <a [href]="result.link" target="_blank">{{ result.title }}</a>
-          <p>{{ result.description }}</p>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Sin resultados -->
-    <div *ngIf="results.length === 0 && searchExecuted">
-      <p>No se encontraron resultados.</p>
-    </div>
-  </div>
-</div>
