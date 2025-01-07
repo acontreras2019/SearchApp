@@ -20,7 +20,7 @@
 }
 
 .navbar-shift {
-  margin-left: 250px; /* Ajusta el margen cuando la sidebar está abierta */
+  margin-left: 20px; /* Ajusta el margen cuando la sidebar está abierta */
 }
 
 .toolbar {
@@ -54,25 +54,36 @@
   align-items: center;
   gap: 8px;
 }
+/* Ajustes para la sidebar */
+.sidebar {
+  padding: 20px;
+  width: 250px;
+  background-color: #f4f4f4; /* Fondo de la barra lateral */
+  position: relative; /* Asegura que el contenido se mantenga dentro de la barra lateral */
+  height: 100%; /* Asegura que la sidebar cubra toda la altura */
+}
 
-/* Sidebar styles */
+.sidebar-header {
+  margin-bottom: 20px;
+  padding-top: 20px; /* Espacio adicional desde la parte superior */
+}
+
+.sidebar-header h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  color: #333; /* Color del texto */
+  display: block;
+  text-align: left; /* Alineación a la izquierda */
+}
+
+/* Ajustes en el contenedor de la barra lateral */
 .sidenav-container {
   margin-top: 64px; /* Altura de la navbar */
   height: calc(100% - 64px);
-}
-
-.sidebar {
-  width: 250px;
-}
-
-.main-content {
-  padding: 16px;
-  transition: margin-left 0.3s ease;
-}
-
-/* Adjust main content when sidebar is open */
-.mat-sidenav-opened + .main-content {
-  margin-left: 250px;
+  display: flex;
+  justify-content: flex-start;
 }
 
 /* Responsive styles */
@@ -86,11 +97,12 @@
   }
 
   .sidebar {
-    width: 200px;
+    width: 250px;
   }
 
   .main-content {
     padding: 8px;
+
   }
 }
 

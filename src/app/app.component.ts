@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { Filter, FilterOption } from './models/filter.model';
-import { FiltroService } from './filtros.service';
+import { FiltroService } from './services/filtros.service';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +43,8 @@ export class AppComponent {
   results: any[] = []; // Resultados de la búsqueda
   // isFiltersHidden: boolean = true;  // Estado para mostrar/ocultar filtros
   filtersData: Filter[] = []; // Utiliza la interfaz importada
-  
+  selectedFilters: Filter[] = [];  // Filtros seleccionados
+
     constructor(
       private filtroService: FiltroService,
       private cdr: ChangeDetectorRef
@@ -65,5 +66,22 @@ export class AppComponent {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
   
-   
+   // Método para manejar el cambio en los filtros
+
+
+
+  onFilterChange(filter: Filter) {
+    // Actualizar los filtros seleccionados, solo con las opciones seleccionadas
+    this.selectedFilters = this.filtersData
+      .map(f => ({
+        id: f.id,
+        name: f.name,
+        icon:f.icon,
+        type: f.type,  // Copiar las propiedades del filtro
+        options: f.options.filter(option => option.selected)  // Filtrar solo las opciones seleccionadas
+      }))
+      .filter(f => f.options.length > 0);  // Incluir solo los filtros que tienen opciones seleccionadas
+      this.filtroService.updateSelectedFilters(this.selectedFilters);  // Actualizamos el servicio
+  }
+
 }

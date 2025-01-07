@@ -11,6 +11,7 @@ export interface FilterOption {
   export interface Filter {
     type: string; // Tipo de filtro (Documentos, Datos Abiertos, etc.)
     id: string; // Identificador único del filtro
+    name: string;
     icon: string;
     options: FilterOption[]; // Opciones disponibles para este filtro
   }

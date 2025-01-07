@@ -34,17 +34,19 @@
         [fixedInViewport]="true"
         (closedStart)="isSidebarOpen = false"
       >
+      <div class="sidebar-header">
         <h2>Filtros</h2>
+      </div>
         <div *ngFor="let filter of filtersData" class="filter-section">
-          <h5>{{ filter.type | titlecase }}</h5>
+          <h5>{{ filter.name | titlecase }}</h5>
           <div *ngFor="let option of filter.options">
-            <mat-checkbox [(ngModel)]="option.selected">{{ option.name }}</mat-checkbox>
+            <mat-checkbox [(ngModel)]="option.selected"  (change)="onFilterChange(filter)">{{ option.name }}</mat-checkbox>
           </div>
         </div>
       </mat-sidenav>
 
       <!-- Contenido principal -->
-      <mat-sidenav-content class="main-content">
+      <mat-sidenav-content class="main-content" style="margin-left: 50px;">
         <router-outlet></router-outlet>
       </mat-sidenav-content>
     </mat-sidenav-container>

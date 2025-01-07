@@ -1,8 +1,18 @@
-<mat-sidenav-container class="sidenav-container">
-  <!-- Sidebar con Angular Material -->
 
-    <div class="main-content">
+    <div class="search-info-container ">
       <h2>Buscar Información</h2>
+      <div class="search-bar">
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Escribe para buscar..." />
+        <button mat-icon-button (click)="search()">
+          <mat-icon>search</mat-icon>
+        </button>
+        <button mat-icon-button (click)="analisis()">
+          <mat-icon>Analisis de Sentiminetos</mat-icon>
+        </button>
+      </div>
+  
+
+      <!-- Mostrar resultados -->
       <div *ngIf="results.length > 0" class="results">
         <h3>Resultados:</h3>
         <ul>
@@ -15,7 +25,6 @@
       <div *ngIf="results.length === 0 && searchExecuted">
         <p>No se encontraron resultados.</p>
       </div>
-    </div>
-</mat-sidenav-container>
+
 
 
