@@ -15,6 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,7 +31,9 @@ export const appConfig: ApplicationConfig = {
       MatButtonModule,
       MatFormFieldModule,
       MatInputModule,
-      MatCheckboxModule
+      MatCheckboxModule,
+      MatTableModule,
+      MatSortModule
     ),
     provideClientHydration(withEventReplay()), 
     provideAnimationsAsync(),

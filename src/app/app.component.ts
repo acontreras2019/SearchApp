@@ -37,7 +37,7 @@ import { FiltroService } from './services/filtros.service';
 })
 export class AppComponent {
   title = 'SearchApp';
-  isSidebarOpen = false;
+  isSidebarOpen = true;
   searchQuery: string = ''; // El texto de búsqueda ingresado por el usuario
   searchExecuted: boolean = false; // Indica si se ha ejecutado la búsqueda
   results: any[] = []; // Resultados de la búsqueda

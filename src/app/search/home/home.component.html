@@ -6,22 +6,85 @@
         <button mat-icon-button (click)="search()">
           <mat-icon>search</mat-icon>
         </button>
-        <button mat-icon-button (click)="analisis()">
-          <mat-icon>Analisis de Sentiminetos</mat-icon>
-        </button>
+       
       </div>
   
+      <div *ngIf="loading">Cargando datos...</div>
+      <div *ngIf="error" class="error">{{ error }}</div>
+
 
       <!-- Mostrar resultados -->
-      <div *ngIf="results.length > 0" class="results">
-        <h3>Resultados:</h3>
-        <ul>
-          <li *ngFor="let result of results">
-            <a [href]="result.link" target="_blank">{{ result.title }}</a>
-            <p>{{ result.description }}</p>
-          </li>
-        </ul>
-      </div>
+      
+<div *ngIf="!loading && !error">
+  <div class="query-info">
+    <h3>Información de la Consulta</h3>
+    <p>Consulta:{{ query }}</p>
+    <p>Fuente:{{ filters.fuente.join(', ') }}</p>
+    <p>Redes Sociales: {{ filters.socialNetwork.join(', ') }}</p>
+    <p>Períodos de Tiempo: {{ filters.time.join(', ') }}</p>
+  </div>
+
+  <div class="statistics">
+    <h3>Estadisticas de los Resultados</h3>
+    <p>Total de Entradas: {{ statistics['totalEntries'] }}</p>
+    <p>Promedio de Sentimiento Compuesto: {{ statistics['averageCompound'] | number: '1.2-2' }}</p>
+    <p>Promedio de Puntaje de Salud Mental: {{ statistics['averageMentalHealthScore'] | number: '1.2-2' }}</p>
+
+  </div>
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="platform">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Plataforma </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.platform }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="year">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Año </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.year }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="compound">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Sentimiento Compuesto </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.sentiment.compound | number: '1.2-2' }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="neg">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Negativo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.sentiment.neg | number: '1.2-2' }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="neu">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Neutral </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.sentiment.neu | number: '1.2-2' }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pos">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Positivo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.sentiment.pos | number: '1.2-2' }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="mental_health_label">
+      <mat-header-cell *matHeaderCellDef> Estado Mental </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.mental_health[0]?.label }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="mental_health_score">
+      <mat-header-cell *matHeaderCellDef> Puntaje </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.mental_health[0]?.score | number: '1.2-2' }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="text">
+        <mat-header-cell *matHeaderCellDef> Texto </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.text }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+
+
       <div *ngIf="results.length === 0 && searchExecuted">
         <p>No se encontraron resultados.</p>
       </div>
