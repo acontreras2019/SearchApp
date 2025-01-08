@@ -36,7 +36,7 @@ import { FiltroService } from './services/filtros.service';
   styleUrls: ['./app.component.css'], // Corregido a "styleUrls"
 })
 export class AppComponent {
-  title = 'SearchApp';
+  title = 'SearchMind APP';
   isSidebarOpen = true;
   searchQuery: string = ''; // El texto de búsqueda ingresado por el usuario
   searchExecuted: boolean = false; // Indica si se ha ejecutado la búsqueda
